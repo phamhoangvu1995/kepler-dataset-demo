@@ -41,3 +41,17 @@ artifacts/*.pkl
 execution_data/results/
 logs/
 tmp/
+__init__.py
+e2e_test.py
+parameter_generator_test.py
+pg_execute_explain_tools_test.py
+pg_execute_training_data_queries_test.py
+pg_generate_plan_candidates_test.py
+pg_perturb_plan_cardinalities_test.py
+pg_plan_hint_extractor_test.py
+query_plan_utils_test.py
+query_text_utils_test.py
+query_utils_test.py
+test_util.py
+testdata/filtered_generate_candidates_explain_plans.json
+testdata/generate_candidates_explain_plans.json
