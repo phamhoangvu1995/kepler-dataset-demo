@@ -1,0 +1,4142 @@
+{
+  "q1_0": {
+    "query": "select count(*) \nfrom\n tag, site, question, tag_question\nwhere\nsite.site_name='@param0' and\ntag.name='@param1' and\ntag.site_id = site.site_id and\nquestion.site_id = site.site_id and\ntag_question.site_id = site.site_id and\ntag_question.question_id = question.id and\ntag_question.tag_id = tag.id",
+    "predicates": [
+      {
+        "alias": "site",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "tag",
+        "column": "name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "tag"
+      }
+    ]
+  },
+  "q11_0": {
+    "query": "SELECT COUNT(*)\nFROM\ntag as t,\nsite as s,\nquestion as q,\ntag_question as tq\nWHERE\nt.site_id = s.site_id\nAND q.site_id = s.site_id\nAND tq.site_id = s.site_id\nAND tq.question_id = q.id\nAND tq.tag_id = t.id\nAND (s.site_name in ('@param0'))\nAND (t.name in ('@param1'))\nAND (q.favorite_count >= @param2)\nAND (q.favorite_count <= @param3)",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q",
+        "column": "favorite_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "q",
+        "column": "favorite_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      }
+    ]
+  },
+  "q11_1": {
+    "query": "SELECT COUNT(*)\nFROM\ntag as t,\nsite as s,\nquestion as q,\ntag_question as tq\nWHERE\nt.site_id = s.site_id\nAND q.site_id = s.site_id\nAND tq.site_id = s.site_id\nAND tq.question_id = q.id\nAND tq.tag_id = t.id\nAND (s.site_name in ('@param0'))\nAND (t.name in ('@param1'))\nAND (q.score >= @param2)\nAND (q.score <= @param3)",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      }
+    ]
+  },
+  "q11_2": {
+    "query": "SELECT COUNT(*)\nFROM\ntag as t,\nsite as s,\nquestion as q,\ntag_question as tq\nWHERE\nt.site_id = s.site_id\nAND q.site_id = s.site_id\nAND tq.site_id = s.site_id\nAND tq.question_id = q.id\nAND tq.tag_id = t.id\nAND (s.site_name in ('@param0'))\nAND (t.name in ('@param1'))\nAND (q.view_count >= @param2)\nAND (q.view_count <= @param3)",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      }
+    ]
+  },
+  "q12_0": {
+    "query": "SELECT t1.name, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1\nWHERE\nq1.owner_user_id = u1.id\nAND a1.question_id = q1.id\nAND a1.owner_user_id = u1.id\nAND s.site_id = q1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = t1.site_id\nAND q1.id = tq1.question_id\nAND t1.id = tq1.tag_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.view_count >= @param2)\nAND (q1.view_count <= @param3)\nAND (u1.reputation >= @param4)\nAND (u1.reputation <= @param5)\nGROUP BY t1.name",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      }
+    ]
+  },
+  "q12_1": {
+    "query": "SELECT t1.name, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1\nWHERE\nq1.owner_user_id = u1.id\nAND a1.question_id = q1.id\nAND a1.owner_user_id = u1.id\nAND s.site_id = q1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = t1.site_id\nAND q1.id = tq1.question_id\nAND t1.id = tq1.tag_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.favorite_count >= @param2)\nAND (q1.favorite_count <= @param3)\nAND (u1.upvotes >= @param4)\nAND (u1.upvotes <= @param5)\nGROUP BY t1.name",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      }
+    ]
+  },
+  "q12_2": {
+    "query": "SELECT t1.name, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1\nWHERE\nq1.owner_user_id = u1.id\nAND a1.question_id = q1.id\nAND a1.owner_user_id = u1.id\nAND s.site_id = q1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = t1.site_id\nAND q1.id = tq1.question_id\nAND t1.id = tq1.tag_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.favorite_count >= @param2)\nAND (q1.favorite_count <= @param3)\nAND (u1.downvotes >= @param4)\nAND (u1.downvotes <= @param5)\nGROUP BY t1.name",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      }
+    ]
+  },
+  "q12_3": {
+    "query": "SELECT t1.name, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1\nWHERE\nq1.owner_user_id = u1.id\nAND a1.question_id = q1.id\nAND a1.owner_user_id = u1.id\nAND s.site_id = q1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = t1.site_id\nAND q1.id = tq1.question_id\nAND t1.id = tq1.tag_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.score >= @param2)\nAND (q1.score <= @param3)\nAND (u1.reputation >= @param4)\nAND (u1.reputation <= @param5)\nGROUP BY t1.name",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      }
+    ]
+  },
+  "q12_4": {
+    "query": "SELECT t1.name, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1\nWHERE\nq1.owner_user_id = u1.id\nAND a1.question_id = q1.id\nAND a1.owner_user_id = u1.id\nAND s.site_id = q1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = t1.site_id\nAND q1.id = tq1.question_id\nAND t1.id = tq1.tag_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.score >= @param2)\nAND (q1.score <= @param3)\nAND (u1.upvotes >= @param4)\nAND (u1.upvotes <= @param5)\nGROUP BY t1.name",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      }
+    ]
+  },
+  "q12_5": {
+    "query": "SELECT t1.name, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1\nWHERE\nq1.owner_user_id = u1.id\nAND a1.question_id = q1.id\nAND a1.owner_user_id = u1.id\nAND s.site_id = q1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = t1.site_id\nAND q1.id = tq1.question_id\nAND t1.id = tq1.tag_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.view_count >= @param2)\nAND (q1.view_count <= @param3)\nAND (u1.upvotes >= @param4)\nAND (u1.upvotes <= @param5)\nGROUP BY t1.name",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      }
+    ]
+  },
+  "q12_6": {
+    "query": "SELECT t1.name, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1\nWHERE\nq1.owner_user_id = u1.id\nAND a1.question_id = q1.id\nAND a1.owner_user_id = u1.id\nAND s.site_id = q1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = t1.site_id\nAND q1.id = tq1.question_id\nAND t1.id = tq1.tag_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.favorite_count >= @param2)\nAND (q1.favorite_count <= @param3)\nAND (u1.reputation >= @param4)\nAND (u1.reputation <= @param5)\nGROUP BY t1.name",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      }
+    ]
+  },
+  "q12_7": {
+    "query": "SELECT t1.name, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1\nWHERE\nq1.owner_user_id = u1.id\nAND a1.question_id = q1.id\nAND a1.owner_user_id = u1.id\nAND s.site_id = q1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = t1.site_id\nAND q1.id = tq1.question_id\nAND t1.id = tq1.tag_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.score >= @param2)\nAND (q1.score <= @param3)\nAND (u1.downvotes >= @param4)\nAND (u1.downvotes <= @param5)\nGROUP BY t1.name",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      }
+    ]
+  },
+  "q12_8": {
+    "query": "SELECT t1.name, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1\nWHERE\nq1.owner_user_id = u1.id\nAND a1.question_id = q1.id\nAND a1.owner_user_id = u1.id\nAND s.site_id = q1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = t1.site_id\nAND q1.id = tq1.question_id\nAND t1.id = tq1.tag_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.view_count >= @param2)\nAND (q1.view_count <= @param3)\nAND (u1.downvotes >= @param4)\nAND (u1.downvotes <= @param5)\nGROUP BY t1.name",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      }
+    ]
+  },
+  "q13_0": {
+    "query": "SELECT acc.location, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.score >= @param2)\nAND (q1.score <= @param3)\nAND (u1.upvotes >= @param4)\nAND (u1.upvotes <= @param5)\nAND (b.name in ('@param6'))\nGROUP BY acc.location\nORDER BY COUNT(*)\nDESC\nLIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q13_1": {
+    "query": "SELECT acc.location, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.view_count >= @param2)\nAND (q1.view_count <= @param3)\nAND (u1.downvotes >= @param4)\nAND (u1.downvotes <= @param5)\nAND (b.name in ('@param6'))\nGROUP BY acc.location\nORDER BY COUNT(*)\nDESC\nLIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q13_2": {
+    "query": "SELECT acc.location, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.view_count >= @param2)\nAND (q1.view_count <= @param3)\nAND (u1.reputation >= @param4)\nAND (u1.reputation <= @param5)\nAND (b.name in ('@param6'))\nGROUP BY acc.location\nORDER BY COUNT(*)\nDESC\nLIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q13_3": {
+    "query": "SELECT acc.location, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.favorite_count >= @param2)\nAND (q1.favorite_count <= @param3)\nAND (u1.downvotes >= @param4)\nAND (u1.downvotes <= @param5)\nAND (b.name in ('@param6'))\nGROUP BY acc.location\nORDER BY COUNT(*)\nDESC\nLIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q13_4": {
+    "query": "SELECT acc.location, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.score >= @param2)\nAND (q1.score <= @param3)\nAND (u1.reputation >= @param4)\nAND (u1.reputation <= @param5)\nAND (b.name in ('@param6'))\nGROUP BY acc.location\nORDER BY COUNT(*)\nDESC\nLIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q13_5": {
+    "query": "SELECT acc.location, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.view_count >= @param2)\nAND (q1.view_count <= @param3)\nAND (u1.upvotes >= @param4)\nAND (u1.upvotes <= @param5)\nAND (b.name in ('@param6'))\nGROUP BY acc.location\nORDER BY COUNT(*)\nDESC\nLIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q13_6": {
+    "query": "SELECT acc.location, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.favorite_count >= @param2)\nAND (q1.favorite_count <= @param3)\nAND (u1.reputation >= @param4)\nAND (u1.reputation <= @param5)\nAND (b.name in ('@param6'))\nGROUP BY acc.location\nORDER BY COUNT(*)\nDESC\nLIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q13_7": {
+    "query": "SELECT acc.location, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.score >= @param2)\nAND (q1.score <= @param3)\nAND (u1.downvotes >= @param4)\nAND (u1.downvotes <= @param5)\nAND (b.name in ('@param6'))\nGROUP BY acc.location\nORDER BY COUNT(*)\nDESC\nLIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q13_8": {
+    "query": "SELECT acc.location, count(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.favorite_count >= @param2)\nAND (q1.favorite_count <= @param3)\nAND (u1.upvotes >= @param4)\nAND (u1.upvotes <= @param5)\nAND (b.name in ('@param6'))\nGROUP BY acc.location\nORDER BY COUNT(*)\nDESC\nLIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q14_0": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.view_count >= @param2)\nAND (q1.view_count <= @param3)\nAND (u1.downvotes >= @param4)\nAND (u1.downvotes <= @param5)\nAND (b.name in ('@param6'))",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q14_1": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.view_count >= @param2)\nAND (q1.view_count <= @param3)\nAND (u1.downvotes >= @param4)\nAND (u1.downvotes <= @param5)\nAND (b.name ILIKE '@param6')",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "ILIKE",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q14_2": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.view_count >= @param2)\nAND (q1.view_count <= @param3)\nAND (u1.reputation >= @param4)\nAND (u1.reputation <= @param5)\nAND (b.name in ('@param6'))",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q14_3": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.view_count >= @param2)\nAND (q1.view_count <= @param3)\nAND (u1.reputation >= @param4)\nAND (u1.reputation <= @param5)\nAND (b.name ILIKE '@param6')",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "ILIKE",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q14_4": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.view_count >= @param2)\nAND (q1.view_count <= @param3)\nAND (u1.upvotes >= @param4)\nAND (u1.upvotes <= @param5)\nAND (b.name in ('@param6'))",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q14_5": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.favorite_count >= @param2)\nAND (q1.favorite_count <= @param3)\nAND (u1.reputation >= @param4)\nAND (u1.reputation <= @param5)\nAND (b.name in ('@param6'))",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q14_6": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.favorite_count >= @param2)\nAND (q1.favorite_count <= @param3)\nAND (u1.upvotes >= @param4)\nAND (u1.upvotes <= @param5)\nAND (b.name in ('@param6'))",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q14_7": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.score >= @param2)\nAND (q1.score <= @param3)\nAND (u1.reputation >= @param4)\nAND (u1.reputation <= @param5)\nAND (b.name in ('@param6'))",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q14_8": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.score >= @param2)\nAND (q1.score <= @param3)\nAND (u1.upvotes >= @param4)\nAND (u1.upvotes <= @param5)\nAND (b.name in ('@param6'))",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q14_9": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.favorite_count >= @param2)\nAND (q1.favorite_count <= @param3)\nAND (u1.downvotes >= @param4)\nAND (u1.downvotes <= @param5)\nAND (b.name in ('@param6'))",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q14_10": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\nquestion as q1,\nanswer as a1,\ntag as t1,\ntag_question as tq1,\nbadge as b,\naccount as acc\nWHERE\ns.site_id = q1.site_id\nAND s.site_id = u1.site_id\nAND s.site_id = a1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = b.site_id\nAND q1.id = tq1.question_id\nAND q1.id = a1.question_id\nAND a1.owner_user_id = u1.id\nAND t1.id = tq1.tag_id\nAND b.user_id = u1.id\nAND acc.id = u1.account_id\nAND (s.site_name in ('@param0'))\nAND (t1.name in ('@param1'))\nAND (q1.score >= @param2)\nAND (q1.score <= @param3)\nAND (u1.downvotes >= @param4)\nAND (u1.downvotes <= @param5)\nAND (b.name in ('@param6'))",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "b",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "badge"
+      }
+    ]
+  },
+  "q15_0": {
+    "query": "SELECT b1.name, count(*)\nFROM\nsite as s,\nso_user as u1,\ntag as t1,\ntag_question as tq1,\nquestion as q1,\nbadge as b1,\naccount as acc\nWHERE\ns.site_id = u1.site_id\nAND s.site_id = b1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = q1.site_id\nAND t1.id = tq1.tag_id\nAND q1.id = tq1.question_id\nAND q1.owner_user_id = u1.id\nAND acc.id = u1.account_id\nAND b1.user_id = u1.id\nAND (q1.favorite_count >= @param0)\nAND (q1.favorite_count <= @param1)\nAND (s.site_name in ('@param2'))\nAND (t1.name in ('@param3'))\nAND (acc.website_url ILIKE ('@param4'))\nGROUP BY b1.name\nORDER BY COUNT(*)\nDESC\nLIMIT 100",
+    "predicates": [
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "acc",
+        "column": "website_url",
+        "operator": "ILIKE",
+        "data_type": "text",
+        "table": "account"
+      }
+    ]
+  },
+  "q15_1": {
+    "query": "SELECT b1.name, count(*)\nFROM\nsite as s,\nso_user as u1,\ntag as t1,\ntag_question as tq1,\nquestion as q1,\nbadge as b1,\naccount as acc\nWHERE\ns.site_id = u1.site_id\nAND s.site_id = b1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = q1.site_id\nAND t1.id = tq1.tag_id\nAND q1.id = tq1.question_id\nAND q1.owner_user_id = u1.id\nAND acc.id = u1.account_id\nAND b1.user_id = u1.id\nAND (q1.score >= @param0)\nAND (q1.score <= @param1)\nAND (s.site_name in ('@param2'))\nAND (t1.name in ('@param3'))\nAND (acc.website_url ILIKE ('@param4'))\nGROUP BY b1.name\nORDER BY COUNT(*)\nDESC\nLIMIT 100",
+    "predicates": [
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "acc",
+        "column": "website_url",
+        "operator": "ILIKE",
+        "data_type": "text",
+        "table": "account"
+      }
+    ]
+  },
+  "q15_2": {
+    "query": "SELECT b1.name, count(*)\nFROM\nsite as s,\nso_user as u1,\ntag as t1,\ntag_question as tq1,\nquestion as q1,\nbadge as b1,\naccount as acc\nWHERE\ns.site_id = u1.site_id\nAND s.site_id = b1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = q1.site_id\nAND t1.id = tq1.tag_id\nAND q1.id = tq1.question_id\nAND q1.owner_user_id = u1.id\nAND acc.id = u1.account_id\nAND b1.user_id = u1.id\nAND (q1.view_count >= @param0)\nAND (q1.view_count <= @param1)\nAND (s.site_name in ('@param2'))\nAND (t1.name in ('@param3'))\nAND (acc.website_url ILIKE ('@param4'))\nGROUP BY b1.name\nORDER BY COUNT(*)\nDESC\nLIMIT 100",
+    "predicates": [
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "acc",
+        "column": "website_url",
+        "operator": "ILIKE",
+        "data_type": "text",
+        "table": "account"
+      }
+    ]
+  },
+  "q16_0": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\ntag as t1,\ntag_question as tq1,\nquestion as q1,\nbadge as b1,\naccount as acc\nWHERE\ns.site_id = u1.site_id\nAND s.site_id = b1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = q1.site_id\nAND t1.id = tq1.tag_id\nAND q1.id = tq1.question_id\nAND q1.owner_user_id = u1.id\nAND acc.id = u1.account_id\nAND b1.user_id = u1.id\nAND (q1.score >= @param0)\nAND (q1.score <= @param1)\nAND s.site_name = 'stackoverflow'\nAND (t1.name in ('@param2'))\nAND (acc.website_url ILIKE ('@param3'))",
+    "predicates": [
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q1",
+        "column": "score",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "acc",
+        "column": "website_url",
+        "operator": "ILIKE",
+        "data_type": "text",
+        "table": "account"
+      }
+    ]
+  },
+  "q16_1": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\ntag as t1,\ntag_question as tq1,\nquestion as q1,\nbadge as b1,\naccount as acc\nWHERE\ns.site_id = u1.site_id\nAND s.site_id = b1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = q1.site_id\nAND t1.id = tq1.tag_id\nAND q1.id = tq1.question_id\nAND q1.owner_user_id = u1.id\nAND acc.id = u1.account_id\nAND b1.user_id = u1.id\nAND (q1.favorite_count >= @param0)\nAND (q1.favorite_count <= @param1)\nAND s.site_name = 'stackoverflow'\nAND (t1.name in ('@param2'))\nAND (acc.website_url ILIKE ('@param3'))",
+    "predicates": [
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "q1",
+        "column": "favorite_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "acc",
+        "column": "website_url",
+        "operator": "ILIKE",
+        "data_type": "text",
+        "table": "account"
+      }
+    ]
+  },
+  "q16_2": {
+    "query": "SELECT COUNT(*)\nFROM\nsite as s,\nso_user as u1,\ntag as t1,\ntag_question as tq1,\nquestion as q1,\nbadge as b1,\naccount as acc\nWHERE\ns.site_id = u1.site_id\nAND s.site_id = b1.site_id\nAND s.site_id = t1.site_id\nAND s.site_id = tq1.site_id\nAND s.site_id = q1.site_id\nAND t1.id = tq1.tag_id\nAND q1.id = tq1.question_id\nAND q1.owner_user_id = u1.id\nAND acc.id = u1.account_id\nAND b1.user_id = u1.id\nAND (q1.view_count >= @param0)\nAND (q1.view_count <= @param1)\nAND s.site_name = 'stackoverflow'\nAND (t1.name in ('@param2'))\nAND (acc.website_url ILIKE ('@param3'))",
+    "predicates": [
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": ">=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q1",
+        "column": "view_count",
+        "operator": "<=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "acc",
+        "column": "website_url",
+        "operator": "ILIKE",
+        "data_type": "text",
+        "table": "account"
+      }
+    ]
+  },
+  "q4_0": {
+    "query": "select COUNT(distinct account.display_name)\nfrom\ntag t1, site s1, question q1, answer a1, tag_question tq1, so_user u1,\naccount\nwhere\ns1.site_name='@param0' and\nt1.name = '@param1' and\nt1.site_id = s1.site_id and\nq1.site_id = s1.site_id and\ntq1.site_id = s1.site_id and\ntq1.question_id = q1.id and\ntq1.tag_id = t1.id and\na1.site_id = q1.site_id and\na1.question_id = q1.id and\na1.owner_user_id = u1.id and\na1.site_id = u1.site_id and\na1.creation_date >= q1.creation_date + '12 months'::interval and\n\naccount.id = u1.account_id",
+    "predicates": [
+      {
+        "alias": "s1",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t1",
+        "column": "name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "tag"
+      }
+    ]
+  },
+  "q9_0": {
+    "query": "select count(distinct account.id) \nfrom\naccount, site, so_user, question q, post_link pl, tag, tag_question tq where\nnot exists (select * \nfrom\n answer a where a.site_id = q.site_id and a.question_id = q.id) and\nsite.site_name = 'stackoverflow' and\nsite.site_id = q.site_id and\npl.site_id = q.site_id and\npl.post_id_to = q.id and\n\ntag.name = '@param0' and\ntag.site_id = q.site_id and\n\nq.creation_date > '@param1'::date and\n\ntq.site_id = tag.site_id and\ntq.tag_id = tag.id and\ntq.question_id = q.id and\n\nq.owner_user_id = so_user.id and\nq.site_id = so_user.site_id and\nso_user.reputation > @param2 and\n\naccount.id = so_user.account_id and\naccount.website_url != ''",
+    "predicates": [
+      {
+        "alias": "tag",
+        "column": "name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "so_user",
+        "column": "reputation",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      }
+    ]
+  },
+  "q20_0": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n site as s,\n so_user as u1,\n so_user as u2,\n answer as a \n WHERE 1=1 \n AND q.id = a.question_id \n AND q.site_id = a.site_id \n AND q.last_activity_date - q.creation_date > interval '14 days' \n AND q.creation_date IS NOT NULL \n AND u1.id = q.owner_user_id \n AND u1.site_id = q.site_id \n AND u2.id = a.owner_user_id \n AND u2.site_id = a.site_id \n AND q.site_id = s.site_id \n AND u1.reputation > @param0 \n AND u2.reputation > @param1 \n AND q.view_count > @param2 \n AND s.site_name = '@param3' \n AND date_part('month',q.last_activity_date)::int = @param4 \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u2",
+        "column": "reputation",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "date_part('month',q",
+        "column": "last_activity_date)::int",
+        "operator": "=",
+        "data_type": "int",
+        "table": "question",
+        "min": 1,
+        "max": 12
+      }
+    ]
+  },
+  "q20_1": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n site as s,\n so_user as u1,\n so_user as u2,\n answer as a \n WHERE 1=1 \n AND q.id = a.question_id \n AND q.site_id = a.site_id \n AND q.last_activity_date - q.creation_date > interval '14 days' \n AND q.creation_date IS NOT NULL \n AND u1.id = q.owner_user_id \n AND u1.site_id = q.site_id \n AND u2.id = a.owner_user_id \n AND u2.site_id = a.site_id \n AND q.site_id = s.site_id \n AND u1.upvotes > @param0 \n AND u2.upvotes > @param1 \n AND q.view_count > @param2 \n AND s.site_name = '@param3' \n AND date_part('month',q.last_activity_date)::int = @param4 \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "u2",
+        "column": "upvotes",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "date_part('month',q",
+        "column": "last_activity_date)::int",
+        "operator": "=",
+        "data_type": "int",
+        "table": "question",
+        "min": 1,
+        "max": 12
+      }
+    ]
+  },
+  "q20_2": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n site as s,\n so_user as u1,\n so_user as u2,\n answer as a \n WHERE 1=1 \n AND q.id = a.question_id \n AND q.site_id = a.site_id \n AND q.last_activity_date - q.creation_date > interval '14 days' \n AND q.creation_date IS NOT NULL \n AND u1.id = q.owner_user_id \n AND u1.site_id = q.site_id \n AND u2.id = a.owner_user_id \n AND u2.site_id = a.site_id \n AND q.site_id = s.site_id \n AND u1.downvotes < @param0 \n AND u2.downvotes < @param1 \n AND q.view_count > @param2 \n AND s.site_name = '@param3' \n AND date_part('month',q.last_activity_date)::int = @param4 \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": "<",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "u2",
+        "column": "downvotes",
+        "operator": "<",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "date_part('month',q",
+        "column": "last_activity_date)::int",
+        "operator": "=",
+        "data_type": "int",
+        "table": "question",
+        "min": 1,
+        "max": 12
+      }
+    ]
+  },
+  "q20_3": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n site as s,\n so_user as u1,\n so_user as u2,\n answer as a \n WHERE 1=1 \n AND q.id = a.question_id \n AND q.site_id = a.site_id \n AND q.last_activity_date - q.creation_date > interval '14 days' \n AND q.creation_date IS NOT NULL \n AND u1.id = q.owner_user_id \n AND u1.site_id = q.site_id \n AND u2.id = a.owner_user_id \n AND u2.site_id = a.site_id \n AND q.site_id = s.site_id \n AND u1.reputation > @param0 \n AND u2.reputation > @param1 \n AND q.view_count > @param2 \n AND s.site_name = '@param3' \n AND date_part('month',q.creation_date)::int = @param4 \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u2",
+        "column": "reputation",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "date_part('month',q",
+        "column": "creation_date)::int",
+        "operator": "=",
+        "data_type": "int",
+        "table": "question",
+        "min": 1,
+        "max": 12
+      }
+    ]
+  },
+  "q20_4": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n site as s,\n so_user as u1,\n so_user as u2,\n answer as a \n WHERE 1=1 \n AND q.id = a.question_id \n AND q.site_id = a.site_id \n AND q.last_activity_date - q.creation_date > interval '14 days' \n AND q.creation_date IS NOT NULL \n AND u1.id = q.owner_user_id \n AND u1.site_id = q.site_id \n AND u2.id = a.owner_user_id \n AND u2.site_id = a.site_id \n AND q.site_id = s.site_id \n AND u1.upvotes > @param0 \n AND u2.upvotes > @param1 \n AND q.view_count > @param2 \n AND s.site_name = '@param3' \n AND date_part('month',q.creation_date)::int = @param4 \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "u1",
+        "column": "upvotes",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "u2",
+        "column": "upvotes",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "date_part('month',q",
+        "column": "creation_date)::int",
+        "operator": "=",
+        "data_type": "int",
+        "table": "question",
+        "min": 1,
+        "max": 12
+      }
+    ]
+  },
+  "q20_5": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n site as s,\n so_user as u1,\n so_user as u2,\n answer as a \n WHERE 1=1 \n AND q.id = a.question_id \n AND q.site_id = a.site_id \n AND q.last_activity_date - q.creation_date > interval '14 days' \n AND q.creation_date IS NOT NULL \n AND u1.id = q.owner_user_id \n AND u1.site_id = q.site_id \n AND u2.id = a.owner_user_id \n AND u2.site_id = a.site_id \n AND q.site_id = s.site_id \n AND u1.downvotes < @param0 \n AND u2.downvotes < @param1 \n AND q.view_count > @param2 \n AND s.site_name = '@param3' \n AND date_part('month',q.creation_date)::int = @param4 \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "u1",
+        "column": "downvotes",
+        "operator": "<",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "u2",
+        "column": "downvotes",
+        "operator": "<",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "date_part('month',q",
+        "column": "creation_date)::int",
+        "operator": "=",
+        "data_type": "int",
+        "table": "question",
+        "min": 1,
+        "max": 12
+      }
+    ]
+  },
+  "q21_0": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n site as s,\n tag_question as tq,\n tag as t \n WHERE 1=1 \n AND q.accepted_answer_id IS NULL \n AND q.site_id = s.site_id \n AND s.site_name = '@param0' \n AND tq.question_id = q.id \n AND tq.site_id = q.site_id \n AND t.site_id = tq.site_id \n AND t.id = tq.tag_id \n AND t.name = '@param1' \n AND q.last_activity_date < '@param2' \n AND q.favorite_count > @param3 \n ORDER BY q.view_count DESC \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t",
+        "column": "name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q",
+        "column": "last_activity_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1455944453.8121743,
+        "variance": 5783113327608620.0
+      },
+      {
+        "alias": "q",
+        "column": "favorite_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 3.057855933806203,
+        "variance": 484.0105128529919
+      }
+    ]
+  },
+  "q21_1": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n site as s,\n tag_question as tq,\n tag as t \n WHERE 1=1 \n AND q.accepted_answer_id IS NULL \n AND q.site_id = s.site_id \n AND s.site_name = '@param0' \n AND tq.question_id = q.id \n AND tq.site_id = q.site_id \n AND t.site_id = tq.site_id \n AND t.id = tq.tag_id \n AND t.name = '@param1' \n AND q.last_activity_date < '@param2' \n AND q.view_count > @param3 \n ORDER BY q.view_count DESC \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t",
+        "column": "name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q",
+        "column": "last_activity_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1455944453.8121743,
+        "variance": 5783113327608620.0
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      }
+    ]
+  },
+  "q21_2": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n site as s,\n tag_question as tq,\n tag as t \n WHERE 1=1 \n AND q.accepted_answer_id IS NULL \n AND q.site_id = s.site_id \n AND s.site_name = '@param0' \n AND tq.question_id = q.id \n AND tq.site_id = q.site_id \n AND t.site_id = tq.site_id \n AND t.id = tq.tag_id \n AND t.name = '@param1' \n AND q.last_activity_date < '@param2' \n AND q.score > @param3 \n ORDER BY q.view_count DESC \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t",
+        "column": "name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q",
+        "column": "last_activity_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1455944453.8121743,
+        "variance": 5783113327608620.0
+      },
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      }
+    ]
+  },
+  "q21_3": {
+    "query": "SELECT q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n site as s,\n tag_question as tq,\n tag as t \n WHERE 1=1 \n AND q.accepted_answer_id IS NULL \n AND q.site_id = s.site_id \n AND s.site_name = '@param0' \n AND tq.question_id = q.id \n AND tq.site_id = q.site_id \n AND t.site_id = tq.site_id \n AND t.id = tq.tag_id \n AND t.name = '@param1' \n AND q.last_activity_date < '@param2' \n AND q.view_count > @param3 \n AND q.score > @param4 \n ORDER BY q.view_count DESC \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t",
+        "column": "name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "tag"
+      },
+      {
+        "alias": "q",
+        "column": "last_activity_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1455944453.8121743,
+        "variance": 5783113327608620.0
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      }
+    ]
+  },
+  "q24_0": {
+    "query": "SELECT q.id, q.score \n FROM \n site as s,\n question as q,\n so_user as u,\n account as acc \n WHERE 1=1 \n AND acc.id = u.account_id \n AND acc.id = @param0 \n AND q.owner_user_id = u.id \n AND q.site_id = u.site_id \n AND q.site_id = s.site_id \n AND s.site_name = '@param1' \n ORDER BY q.score DESC \n LIMIT 50",
+    "predicates": [
+      {
+        "alias": "acc",
+        "column": "id",
+        "operator": "=",
+        "data_type": "float",
+        "table": "account",
+        "mean": 8756119.62728929,
+        "variance": 23218069007364.047
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      }
+    ]
+  },
+  "q24_1": {
+    "query": "SELECT q.id, q.view_count \n FROM \n site as s,\n question as q,\n so_user as u,\n account as acc \n WHERE 1=1 \n AND acc.id = u.account_id \n AND acc.id = @param0 \n AND q.owner_user_id = u.id \n AND q.site_id = u.site_id \n AND q.site_id = s.site_id \n AND s.site_name = '@param1' \n ORDER BY q.view_count DESC \n LIMIT 50",
+    "predicates": [
+      {
+        "alias": "acc",
+        "column": "id",
+        "operator": "=",
+        "data_type": "float",
+        "table": "account",
+        "mean": 8756119.62728929,
+        "variance": 23218069007364.047
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      }
+    ]
+  },
+  "q24_2": {
+    "query": "SELECT q.id, q.last_activity_date \n FROM \n site as s,\n question as q,\n so_user as u,\n account as acc \n WHERE 1=1 \n AND acc.id = u.account_id \n AND acc.id = @param0 \n AND q.owner_user_id = u.id \n AND q.site_id = u.site_id \n AND q.site_id = s.site_id \n AND s.site_name = '@param1' \n ORDER BY q.last_activity_date DESC \n LIMIT 50",
+    "predicates": [
+      {
+        "alias": "acc",
+        "column": "id",
+        "operator": "=",
+        "data_type": "float",
+        "table": "account",
+        "mean": 8756119.62728929,
+        "variance": 23218069007364.047
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      }
+    ]
+  },
+  "q25_0": {
+    "query": "SELECT a.id, a.score \n FROM \n site as s,\n answer as a,\n so_user as u,\n account as acc \n WHERE 1=1 \n AND acc.id = u.account_id \n AND acc.id = @param0 \n AND a.owner_user_id = u.id \n AND a.site_id = u.site_id \n AND a.site_id = s.site_id \n AND s.site_name = '@param1' \n ORDER BY a.score DESC \n LIMIT 50",
+    "predicates": [
+      {
+        "alias": "acc",
+        "column": "id",
+        "operator": "=",
+        "data_type": "float",
+        "table": "account",
+        "mean": 8756119.62728929,
+        "variance": 23218069007364.047
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      }
+    ]
+  },
+  "q25_1": {
+    "query": "SELECT a.id, a.view_count \n FROM \n site as s,\n answer as a,\n so_user as u,\n account as acc \n WHERE 1=1 \n AND acc.id = u.account_id \n AND acc.id = @param0 \n AND a.owner_user_id = u.id \n AND a.site_id = u.site_id \n AND a.site_id = s.site_id \n AND s.site_name = '@param1' \n ORDER BY a.view_count DESC \n LIMIT 50",
+    "predicates": [
+      {
+        "alias": "acc",
+        "column": "id",
+        "operator": "=",
+        "data_type": "float",
+        "table": "account",
+        "mean": 8756119.62728929,
+        "variance": 23218069007364.047
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      }
+    ]
+  },
+  "q25_2": {
+    "query": "SELECT a.id, a.score \n FROM \n site as s,\n answer as a,\n so_user as u,\n account as acc \n WHERE 1=1 \n AND acc.id = u.account_id \n AND acc.id = @param0 \n AND a.owner_user_id = u.id \n AND a.site_id = u.site_id \n AND a.site_id = s.site_id \n AND s.site_name = '@param1' \n ORDER BY a.view_count DESC \n LIMIT 50",
+    "predicates": [
+      {
+        "alias": "acc",
+        "column": "id",
+        "operator": "=",
+        "data_type": "float",
+        "table": "account",
+        "mean": 8756119.62728929,
+        "variance": 23218069007364.047
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      }
+    ]
+  },
+  "q25_3": {
+    "query": "SELECT a.id, a.score \n FROM \n site as s,\n question as q,\n answer as a,\n so_user as u,\n account as acc \n WHERE 1=1 \n AND acc.id = u.account_id \n AND acc.id = @param0 \n AND a.owner_user_id = u.id \n AND a.site_id = u.site_id \n AND a.site_id = s.site_id \n AND s.site_name = '@param1' \n AND q.site_id = s.site_id \n AND q.accepted_answer_id = a.id \n ORDER BY a.score DESC \n LIMIT 50",
+    "predicates": [
+      {
+        "alias": "acc",
+        "column": "id",
+        "operator": "=",
+        "data_type": "float",
+        "table": "account",
+        "mean": 8756119.62728929,
+        "variance": 23218069007364.047
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      }
+    ]
+  },
+  "q25_4": {
+    "query": "SELECT a.id, a.score \n FROM \n site as s,\n answer as a,\n so_user as u,\n account as acc \n WHERE 1=1 \n AND acc.id = u.account_id \n AND acc.id = @param0 \n AND a.owner_user_id = u.id \n AND a.site_id = u.site_id \n AND a.site_id = s.site_id \n AND s.site_name = '@param1' \n AND LENGTH(a.body) > @param2 \n ORDER BY a.score DESC \n LIMIT 50",
+    "predicates": [
+      {
+        "alias": "acc",
+        "column": "id",
+        "operator": "=",
+        "data_type": "float",
+        "table": "account",
+        "mean": 8756119.62728929,
+        "variance": 23218069007364.047
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "LENGTH(a",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 1255.6579541754122,
+        "variance": 2050868.8866513956
+      }
+    ]
+  },
+  "q27_0": {
+    "query": "select max(q.score) as score, max(q.view_count) as view_count, count(*) as answer_count, max(q.title) as title, max(q.tagstring) as tags, max(q.last_editor_id) as editor, max(acc.display_name) as name, max(u.reputation) as reputation \n FROM \n question as q,\n answer as a,\n account as acc,\n so_user as u \n WHERE 1=1 \n AND a.question_id = q.id \n AND q.site_id = a.site_id \n AND acc.id = q.last_editor_id \n AND u.account_id = acc.id \n AND q.id = @param0 \n AND q.site_id = @param1",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "id",
+        "operator": "=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 22293534.093790986,
+        "variance": 379017531568499.4
+      },
+      {
+        "alias": "q",
+        "column": "site_id",
+        "operator": "=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 135.06538955970348,
+        "variance": 1241.025765874311
+      }
+    ]
+  },
+  "q28_0": {
+    "query": "select q.score, q.view_count, count(*) as answer_count, q.title, q.tagstring, q.last_editor_id, acc.display_name \n FROM \n question as q,\n answer as a,\n account as acc \n WHERE 1=1 \n AND a.question_id = q.id \n AND q.site_id = a.site_id \n AND acc.id = q.last_editor_id \n AND q.id = @param0 \n AND q.site_id = @param1 \n GROUP BY q.score, q.view_count, q.title, q.tagstring, q.last_editor_id, acc.display_name",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "id",
+        "operator": "=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 22293534.093790986,
+        "variance": 379017531568499.4
+      },
+      {
+        "alias": "q",
+        "column": "site_id",
+        "operator": "=",
+        "data_type": "float",
+        "table": "question",
+        "mean": 135.06538955970348,
+        "variance": 1241.025765874311
+      }
+    ]
+  },
+  "q29_0": {
+    "query": "SELECT COUNT(*) \n FROM \n site as s,\n post_link as pl,\n question as q1,\n question as q2,\n tag as t,\n tag_question as tq1,\n tag_question as tq2 \n WHERE 1=1 \n AND s.site_name = '@param0' \n AND pl.site_id = s.site_id \n AND pl.site_id = q1.site_id \n AND pl.site_id = q2.site_id \n AND pl.post_id_from = q1.id \n AND pl.post_id_to = q2.id \n AND pl.link_type = 3 \n AND t.name in ('@param1') \n AND t.id = tq1.tag_id \n AND t.site_id = tq1.site_id \n AND t.id = tq2.tag_id \n AND t.site_id = tq2.site_id \n AND t.site_id = pl.site_id \n AND tq1.site_id = q1.site_id \n AND tq1.question_id = q1.id \n AND tq2.site_id = q2.site_id \n AND tq2.question_id = q2.id \n GROUP BY pl.post_id_to, pl.post_id_from",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "t",
+        "column": "name",
+        "operator": "in",
+        "data_type": "text",
+        "table": "tag"
+      }
+    ]
+  },
+  "q31_0": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a,\n so_user as u1,\n so_user as u2,\n so_user as u3,\n site as s \n WHERE 1=1 \n AND s.site_id = u1.site_id \n AND s.site_id = u2.site_id \n AND s.site_id = u3.site_id \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND q.site_id = u1.site_id \n AND q.owner_user_id = u1.id \n AND a.site_id = u2.site_id \n AND a.owner_user_id = u2.id \n AND a.site_id = u3.site_id \n AND a.last_editor_id = u3.id \n AND u1.reputation > @param0 \n AND u2.reputation > @param1 \n AND u3.reputation > @param2 \n AND q.view_count > @param3 \n AND a.score > @param4 \n AND s.site_name = '@param5' \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u2",
+        "column": "reputation",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u3",
+        "column": "reputation",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "a",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 6.204789152607312,
+        "variance": 2365.313451001683
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      }
+    ]
+  },
+  "q31_1": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a,\n so_user as u1,\n so_user as u2,\n so_user as u3,\n site as s \n WHERE 1=1 \n AND s.site_id = u1.site_id \n AND s.site_id = u2.site_id \n AND s.site_id = u3.site_id \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND q.site_id = u1.site_id \n AND q.owner_user_id = u1.id \n AND a.site_id = u2.site_id \n AND a.owner_user_id = u2.id \n AND a.site_id = u3.site_id \n AND a.last_editor_id = u3.id \n AND u1.reputation > @param0 \n AND u2.reputation > @param1 \n AND u3.reputation > @param2 \n AND s.site_name = '@param3' \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "u1",
+        "column": "reputation",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u2",
+        "column": "reputation",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "u3",
+        "column": "reputation",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 92.10767191937623,
+        "variance": 3430917.1998524773
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      }
+    ]
+  },
+  "q31_2": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a,\n so_user as u1,\n so_user as u2,\n so_user as u3,\n site as s \n WHERE 1=1 \n AND s.site_id = u1.site_id \n AND s.site_id = u2.site_id \n AND s.site_id = u3.site_id \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND q.site_id = u1.site_id \n AND q.owner_user_id = u1.id \n AND a.site_id = u2.site_id \n AND a.owner_user_id = u2.id \n AND a.site_id = u3.site_id \n AND a.last_editor_id = u3.id \n AND u1.last_access_date > '@param0' \n AND u1.last_access_date < '@param1' \n AND u2.last_access_date > '@param2' \n AND u2.last_access_date < '@param3' \n AND u3.last_access_date > '@param4' \n AND u3.last_access_date < '@param5' \n AND q.view_count > @param6 \n AND a.score > @param7 \n AND s.site_name = '@param8' \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "u1",
+        "column": "last_access_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1501048216.1306427,
+        "variance": 4326230471114583.0
+      },
+      {
+        "alias": "u1",
+        "column": "last_access_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1501048216.1306427,
+        "variance": 4326230471114583.0
+      },
+      {
+        "alias": "u2",
+        "column": "last_access_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1501048216.1306427,
+        "variance": 4326230471114583.0
+      },
+      {
+        "alias": "u2",
+        "column": "last_access_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1501048216.1306427,
+        "variance": 4326230471114583.0
+      },
+      {
+        "alias": "u3",
+        "column": "last_access_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1501048216.1306427,
+        "variance": 4326230471114583.0
+      },
+      {
+        "alias": "u3",
+        "column": "last_access_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1501048216.1306427,
+        "variance": 4326230471114583.0
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "a",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 6.204789152607312,
+        "variance": 2365.313451001683
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      }
+    ]
+  },
+  "q31_3": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a,\n so_user as u1,\n so_user as u2,\n so_user as u3,\n site as s \n WHERE 1=1 \n AND s.site_id = u1.site_id \n AND s.site_id = u2.site_id \n AND s.site_id = u3.site_id \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND q.site_id = u1.site_id \n AND q.owner_user_id = u1.id \n AND a.site_id = u2.site_id \n AND a.owner_user_id = u2.id \n AND a.site_id = u3.site_id \n AND a.last_editor_id = u3.id \n AND u1.last_access_date > '@param0' \n AND u1.last_access_date < '@param1' \n AND u2.last_access_date > '@param2' \n AND u2.last_access_date < '@param3' \n AND u3.last_access_date > '@param4' \n AND u3.last_access_date < '@param5' \n AND s.site_name = '@param6' \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "u1",
+        "column": "last_access_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1501048216.1306427,
+        "variance": 4326230471114583.0
+      },
+      {
+        "alias": "u1",
+        "column": "last_access_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1501048216.1306427,
+        "variance": 4326230471114583.0
+      },
+      {
+        "alias": "u2",
+        "column": "last_access_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1501048216.1306427,
+        "variance": 4326230471114583.0
+      },
+      {
+        "alias": "u2",
+        "column": "last_access_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1501048216.1306427,
+        "variance": 4326230471114583.0
+      },
+      {
+        "alias": "u3",
+        "column": "last_access_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1501048216.1306427,
+        "variance": 4326230471114583.0
+      },
+      {
+        "alias": "u3",
+        "column": "last_access_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1501048216.1306427,
+        "variance": 4326230471114583.0
+      },
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      }
+    ]
+  },
+  "q32_0": {
+    "query": "select COUNT(*) \n FROM \n question as q \n JOIN \n answer as a \n ON \n a.question_id = q.id \n AND a.site_id = q.site_id \n WHERE 1=1 \n AND q.view_count > 100 \n AND q.view_count < @param0 \n AND q.score > @param1 \n AND q.score < 200 \n AND a.score > @param2 \n AND a.score < 200",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": "<",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "a",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 6.204789152607312,
+        "variance": 2365.313451001683
+      }
+    ]
+  },
+  "q32_1": {
+    "query": "select COUNT(*) \n FROM \n question as q \n JOIN \n answer as a \n ON \n a.question_id = q.id \n AND a.site_id = q.site_id \n WHERE 1=1 \n AND q.view_count > @param0 \n AND q.view_count < @param1 \n AND q.score > @param2 \n AND q.score < @param3 \n AND a.score > @param4 \n AND a.score < @param5",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": "<",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": "<",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "a",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 6.204789152607312,
+        "variance": 2365.313451001683
+      },
+      {
+        "alias": "a",
+        "column": "score",
+        "operator": "<",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 6.204789152607312,
+        "variance": 2365.313451001683
+      }
+    ]
+  },
+  "q32_2": {
+    "query": "select COUNT(*) \n FROM \n question as q \n JOIN \n answer as a \n ON \n a.question_id = q.id \n AND a.site_id = q.site_id \n WHERE 1=1 \n AND q.view_count > @param0 \n AND q.view_count < @param1 \n AND q.score > @param2 \n AND q.score < @param3 \n AND q.creation_date > '@param4' \n AND q.creation_date < '@param5'",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": "<",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": "<",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      }
+    ]
+  },
+  "q32_3": {
+    "query": "select COUNT(*) \n FROM \n question as q \n JOIN \n answer as a \n ON \n a.question_id = q.id \n AND a.site_id = q.site_id \n WHERE 1=1 \n AND q.view_count > @param0 \n AND q.view_count < @param1 \n AND q.score > @param2 \n AND q.score < @param3 \n AND q.creation_date > '@param4' \n AND q.creation_date < '@param5' \n AND a.score > @param6 \n AND a.score < @param7",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": "<",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": "<",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "a",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 6.204789152607312,
+        "variance": 2365.313451001683
+      },
+      {
+        "alias": "a",
+        "column": "score",
+        "operator": "<",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 6.204789152607312,
+        "variance": 2365.313451001683
+      }
+    ]
+  },
+  "q32_4": {
+    "query": "select COUNT(*) \n FROM \n question as q \n JOIN \n answer as a \n ON \n a.question_id = q.id \n AND a.site_id = q.site_id \n WHERE 1=1 \n AND q.view_count > @param0 \n AND q.view_count < @param1 \n AND a.score > @param2 \n AND a.score < @param3 \n AND a.creation_date > '@param4' \n AND a.creation_date < '@param5'",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "q",
+        "column": "view_count",
+        "operator": "<",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2901.779761418381,
+        "variance": 525274697.45180166
+      },
+      {
+        "alias": "a",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 6.204789152607312,
+        "variance": 2365.313451001683
+      },
+      {
+        "alias": "a",
+        "column": "score",
+        "operator": "<",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 6.204789152607312,
+        "variance": 2365.313451001683
+      },
+      {
+        "alias": "a",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "answer",
+        "mean": 1428260682.252115,
+        "variance": 7088420429104319.0
+      },
+      {
+        "alias": "a",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "answer",
+        "mean": 1428260682.252115,
+        "variance": 7088420429104319.0
+      }
+    ]
+  },
+  "q32_5": {
+    "query": "select COUNT(*) \n FROM \n question as q \n JOIN \n answer as a \n ON \n a.question_id = q.id \n AND a.site_id = q.site_id \n WHERE 1=1 \n AND q.creation_date > '@param0' \n AND q.creation_date < '@param1' \n AND q.last_edit_date > '@param2' \n AND q.last_edit_date < '@param3' \n AND a.creation_date > '@param4' \n AND a.creation_date < '@param5' \n AND a.last_edit_date > '@param6' \n AND a.last_edit_date < '@param7'",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "q",
+        "column": "last_edit_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1445975591.1496394,
+        "variance": 6118441899364319.0
+      },
+      {
+        "alias": "q",
+        "column": "last_edit_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1445975591.1496394,
+        "variance": 6118441899364319.0
+      },
+      {
+        "alias": "a",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "answer",
+        "mean": 1428260682.252115,
+        "variance": 7088420429104319.0
+      },
+      {
+        "alias": "a",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "answer",
+        "mean": 1428260682.252115,
+        "variance": 7088420429104319.0
+      },
+      {
+        "alias": "a",
+        "column": "last_edit_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "answer",
+        "mean": 1439878316.8374915,
+        "variance": 6631271375846446.0
+      },
+      {
+        "alias": "a",
+        "column": "last_edit_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "answer",
+        "mean": 1439878316.8374915,
+        "variance": 6631271375846446.0
+      }
+    ]
+  },
+  "q32_6": {
+    "query": "select COUNT(*) \n FROM \n question as q \n JOIN \n answer as a \n ON \n a.question_id = q.id \n AND a.site_id = q.site_id \n WHERE 1=1 \n AND q.creation_date > '@param0' \n AND q.creation_date < '@param1' \n AND q.last_activity_date > '@param2' \n AND q.last_activity_date < '@param3' \n AND a.creation_date > '@param4' \n AND a.creation_date < '@param5' \n AND a.last_activity_date > '@param6' \n AND a.last_activity_date < '@param7'",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "q",
+        "column": "last_activity_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1455944453.8121743,
+        "variance": 5783113327608620.0
+      },
+      {
+        "alias": "q",
+        "column": "last_activity_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1455944453.8121743,
+        "variance": 5783113327608620.0
+      },
+      {
+        "alias": "a",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "answer",
+        "mean": 1428260682.252115,
+        "variance": 7088420429104319.0
+      },
+      {
+        "alias": "a",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "answer",
+        "mean": 1428260682.252115,
+        "variance": 7088420429104319.0
+      },
+      {
+        "alias": "a",
+        "column": "last_activity_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "answer",
+        "mean": 1439866763.068621,
+        "variance": 6631295065945313.0
+      },
+      {
+        "alias": "a",
+        "column": "last_activity_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "answer",
+        "mean": 1439866763.068621,
+        "variance": 6631295065945313.0
+      }
+    ]
+  },
+  "q33_0": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a,\n site as s \n WHERE 1=1 \n AND s.site_id = q.site_id \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND a.site_id = s.site_id \n AND s.site_name = '@param0' \n AND q.score > @param1 \n AND q.creation_date > '@param2' \n AND length(a.body) > @param3 \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "length(a",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 1255.6579541754122,
+        "variance": 2050868.8866513956
+      }
+    ]
+  },
+  "q33_1": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a,\n site as s \n WHERE 1=1 \n AND s.site_id = q.site_id \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND a.site_id = s.site_id \n AND s.site_name = '@param0' \n AND q.score > @param1 \n AND q.creation_date > '@param2' \n AND q.creation_date < '@param3' \n AND length(a.body) > @param4 \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "s",
+        "column": "site_name",
+        "operator": "=",
+        "data_type": "text",
+        "table": "site"
+      },
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "length(a",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 1255.6579541754122,
+        "variance": 2050868.8866513956
+      }
+    ]
+  },
+  "q33_2": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a \n WHERE 1=1 \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND q.score > @param0 \n AND q.creation_date > '@param1' \n AND length(a.body) > @param2 \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "length(a",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 1255.6579541754122,
+        "variance": 2050868.8866513956
+      }
+    ]
+  },
+  "q33_3": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a \n WHERE 1=1 \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND q.score > @param0 \n AND q.creation_date > '@param1' \n AND q.creation_date < '@param2' \n AND length(a.body) > @param3 \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "length(a",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 1255.6579541754122,
+        "variance": 2050868.8866513956
+      }
+    ]
+  },
+  "q33_4": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a \n WHERE 1=1 \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND q.score > @param0 \n AND q.creation_date > '@param1' \n AND q.creation_date < '@param2' \n AND length(a.body) > @param3 \n AND a.score < @param4 \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "length(a",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 1255.6579541754122,
+        "variance": 2050868.8866513956
+      },
+      {
+        "alias": "a",
+        "column": "score",
+        "operator": "<",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 6.204789152607312,
+        "variance": 2365.313451001683
+      }
+    ]
+  },
+  "q33_5": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a \n WHERE 1=1 \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND q.score > @param0 \n AND length(a.body) > @param1 \n AND a.score < @param2 \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "length(a",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 1255.6579541754122,
+        "variance": 2050868.8866513956
+      },
+      {
+        "alias": "a",
+        "column": "score",
+        "operator": "<",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 6.204789152607312,
+        "variance": 2365.313451001683
+      }
+    ]
+  },
+  "q33_6": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a \n WHERE 1=1 \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND q.score > @param0 \n AND length(a.body) > @param1 \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "length(a",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 1255.6579541754122,
+        "variance": 2050868.8866513956
+      }
+    ]
+  },
+  "q33_7": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a \n WHERE 1=1 \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND length(q.body) > @param0 \n AND length(a.body) > @param1 \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "length(q",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 1534.3252935848357,
+        "variance": 4250398.988999509
+      },
+      {
+        "alias": "length(a",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 1255.6579541754122,
+        "variance": 2050868.8866513956
+      }
+    ]
+  },
+  "q34_0": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a,\n so_user as u \n WHERE 1=1 \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND q.owner_user_id = a.owner_user_id \n AND a.site_id = u.site_id \n AND a.owner_user_id = u.id \n AND q.site_id = u.site_id \n AND q.owner_user_id = u.id \n AND q.creation_date > '@param0' \n AND q.creation_date < '@param1' \n AND a.creation_date > '@param2' \n AND a.creation_date < '@param3' \n AND u.creation_date > '@param4' \n AND u.creation_date < '@param5' \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "a",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "answer",
+        "mean": 1428260682.252115,
+        "variance": 7088420429104319.0
+      },
+      {
+        "alias": "a",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "answer",
+        "mean": 1428260682.252115,
+        "variance": 7088420429104319.0
+      },
+      {
+        "alias": "u",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1458384810.6487184,
+        "variance": 5456505742591471.0
+      },
+      {
+        "alias": "u",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1458384810.6487184,
+        "variance": 5456505742591471.0
+      }
+    ]
+  },
+  "q34_1": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a,\n so_user as u \n WHERE 1=1 \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND q.owner_user_id = a.owner_user_id \n AND a.site_id = u.site_id \n AND a.owner_user_id = u.id \n AND q.site_id = u.site_id \n AND q.owner_user_id = u.id \n AND q.score > @param0 \n AND q.creation_date < '@param1' \n AND u.upvotes > @param2 \n AND u.downvotes < @param3 \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "u",
+        "column": "upvotes",
+        "operator": ">",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 8.608116620788763,
+        "variance": 25708.536737985563
+      },
+      {
+        "alias": "u",
+        "column": "downvotes",
+        "operator": "<",
+        "data_type": "float",
+        "table": "so_user",
+        "mean": 1.1059489028502318,
+        "variance": 73615.1883826845
+      }
+    ]
+  },
+  "q34_2": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n answer as a,\n so_user as u \n WHERE 1=1 \n AND a.question_id = q.id \n AND a.site_id = q.site_id \n AND q.owner_user_id = a.owner_user_id \n AND a.site_id = u.site_id \n AND a.owner_user_id = u.id \n AND q.site_id = u.site_id \n AND q.owner_user_id = u.id \n AND q.creation_date > '@param0' \n AND q.creation_date < '@param1' \n AND length(a.body) > @param2 \n AND u.creation_date > '@param3' \n AND u.creation_date < '@param4' \n ORDER BY q.view_count \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "q",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "question",
+        "mean": 1435021938.457112,
+        "variance": 6725479404824857.0
+      },
+      {
+        "alias": "length(a",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 1255.6579541754122,
+        "variance": 2050868.8866513956
+      },
+      {
+        "alias": "u",
+        "column": "creation_date",
+        "operator": ">",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1458384810.6487184,
+        "variance": 5456505742591471.0
+      },
+      {
+        "alias": "u",
+        "column": "creation_date",
+        "operator": "<",
+        "data_type": "float",
+        "preprocess_type": "to_timestamp",
+        "table": "so_user",
+        "mean": 1458384810.6487184,
+        "variance": 5456505742591471.0
+      }
+    ]
+  },
+  "q36_0": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n comment as c,\n answer a \n WHERE 1=1 \n AND c.post_id = q.id \n AND c.site_id = q.site_id \n AND c.site_id = a.site_id \n AND a.site_id = q.site_id \n AND a.question_id = q.id \n AND q.score > @param0 \n AND c.score < @param1 \n AND length(c.body) > @param2 \n AND a.score < @param3 \n AND length(a.body) > @param4 \n ORDER BY q.score \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "c",
+        "column": "score",
+        "operator": "<",
+        "data_type": "float",
+        "table": "comment",
+        "mean": 0.3583700952208003,
+        "variance": 4.209637600237478
+      },
+      {
+        "alias": "length(c",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "comment",
+        "mean": 155.01515777727263,
+        "variance": 14869.150091201227
+      },
+      {
+        "alias": "a",
+        "column": "score",
+        "operator": "<",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 6.204789152607312,
+        "variance": 2365.313451001683
+      },
+      {
+        "alias": "length(a",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 1255.6579541754122,
+        "variance": 2050868.8866513956
+      }
+    ]
+  },
+  "q36_2": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n comment as c,\n answer a \n WHERE 1=1 \n AND c.post_id = q.id \n AND c.site_id = q.site_id \n AND c.site_id = a.site_id \n AND a.site_id = q.site_id \n AND a.question_id = q.id \n AND q.score > @param0 \n AND length(c.body) > @param1 \n AND length(a.body) > @param2 \n ORDER BY q.score \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "length(c",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "comment",
+        "mean": 155.01515777727263,
+        "variance": 14869.150091201227
+      },
+      {
+        "alias": "length(a",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 1255.6579541754122,
+        "variance": 2050868.8866513956
+      }
+    ]
+  },
+  "q37_2": {
+    "query": "SELECT q.id, q.body, q.score, q.title, q.view_count \n FROM \n question as q,\n comment as c,\n answer a \n WHERE 1=1 \n AND c.post_id = a.id \n AND c.site_id = a.site_id \n AND c.site_id = q.site_id \n AND a.site_id = q.site_id \n AND a.question_id = q.id \n AND q.score > @param0 \n AND length(c.body) > @param1 \n AND length(a.body) > @param2 \n ORDER BY q.score \n LIMIT 100",
+    "predicates": [
+      {
+        "alias": "q",
+        "column": "score",
+        "operator": ">",
+        "data_type": "float",
+        "table": "question",
+        "mean": 2.847185014322492,
+        "variance": 710.306434321861
+      },
+      {
+        "alias": "length(c",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "comment",
+        "mean": 155.01515777727263,
+        "variance": 14869.150091201227
+      },
+      {
+        "alias": "length(a",
+        "column": "body)",
+        "operator": ">",
+        "data_type": "float",
+        "table": "answer",
+        "mean": 1255.6579541754122,
+        "variance": 2050868.8866513956
+      }
+    ]
+  }
+}
