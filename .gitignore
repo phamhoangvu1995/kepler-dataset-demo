@@ -1,0 +1,49 @@
+# ====== Kepler Demo Temporary Files ======
+__pycache__/
+*.pyc
+*.pyo
+*.pkl
+*.bak
+*.log
+*.zip
+*.rar
+.DS_Store
+
+# ====== Artifacts that can be regenerated ======
+artifacts/model_*
+artifacts/history_*
+artifacts/report_*
+artifacts/train_report_*
+artifacts/scaler_*
+artifacts/plans_candidates*
+execution_data/results/
+logs/
+tmp/
+
+# ====== Virtual Environment ======
+kepler-env/
+venv/
+.env/
+so_pg13.tar.zst
+
+# ====== Ignore large auto-generated artifacts ======
+artifacts/*.pkl
+*.pkl
+*.keras
+*.tar
+*.tar.zst
+*.zip
+*.rar
+# virtual env & dumps & large artifacts
+kepler-env/
+*.zst
+*.tar
+*.tar.gz
+*.zip
+*.rar
+*.keras
+*.pkl
+artifacts/*.pkl
+execution_data/results/
+logs/
+tmp/
