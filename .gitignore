@@ -10,13 +10,7 @@ __pycache__/
 .DS_Store
 
 # ====== Artifacts that can be regenerated ======
-artifacts/model_*
-artifacts/history_*
-artifacts/report_*
-artifacts/train_report_*
-artifacts/scaler_*
-artifacts/plans_candidates*
-execution_data/results/
+outputs/
 logs/
 tmp/
 
